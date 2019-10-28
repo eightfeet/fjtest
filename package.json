@@ -1,0 +1,27 @@
+{
+  "name": "@eightfeet/modal",
+  "version": "1.2.5",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:uat": "cross-env UAT_ENV=uat webpack --mode production",
+    "dev": "webpack-dev-server --mode development --inline --hot",
+    "prepublish": "rm -rf ./dist && yarn build",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "eightfeet",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  }
+}
