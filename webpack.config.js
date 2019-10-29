@@ -34,13 +34,7 @@ module.exports = (env, argv) => ({
 			{
 				test: /\.js$/,
 				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: [
-							'@babel/preset-env'
-						],
-						plugins: ["@babel/plugin-proposal-class-properties"]
-					}
+					loader: 'babel-loader'
 				},
 				exclude: /node_modules/
 			}

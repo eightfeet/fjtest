@@ -10,4 +10,6 @@ const myTest = function() {
 //     test = () => {console.log('this is test!!!');}
 // }
 
-module.exports = myTest;
+// module.exports = myTest;
+
+export default myTest;
