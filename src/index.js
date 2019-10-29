@@ -1,17 +1,13 @@
-const test = function() {
+const myTest = function() {
 	return ('this is a test!');
 };
 
-class ClassTest {
-	constructor(){
-		this.name = 'ClassTest';
-	}
+// class ClassTest {
+// 	constructor(){
+// 		this.name = 'ClassTest';
+// 	}
 
- test = () => {
-	 console.log('this is test!!!');
- }
-}
+//     test = () => {console.log('this is test!!!');}
+// }
 
-console.log(test());
-
-module.exports = ClassTest;
+module.exports = myTest;
