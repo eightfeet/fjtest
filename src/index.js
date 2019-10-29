@@ -1,8 +1,10 @@
 import { isNumber } from './help';
 import z from '~/assets/zhe.png';
-// import { s } from './index.scss';
+import s from './index.scss';
 
-document.body.innerHTML = `<h1 class=""><img src="${z}" />是一个测试</h1>`;
+document.body.innerHTML = `<h1 class="${s.test}"><audio src="./public/A.mp3" controls autoplay>
+您的浏览器不支持 audio 标签。
+</audio><img src="${z}" />是一个测试</h1>`;
 
 
 const myTest = function(parems) {

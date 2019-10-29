@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 let cdn = process.env.PUBLIC_PATH || './';
 
@@ -41,8 +42,9 @@ module.exports = (env, argv) => ({
 						loader: 'css-loader',
 						options: {
 							modules: {
-								localIdentName: '[name][hash:base64:5]'
-							}
+								localIdentName: '[name][hash:base64:8]'
+							},
+							sourceMap: true
 						}
 					},
 					{
@@ -93,7 +95,10 @@ module.exports = (env, argv) => ({
 	},
 	devtool: 'source-map',
 	plugins: [
-		new HtmlWebpackPlugin()
+		new HtmlWebpackPlugin(),
+		new CopyWebpackPlugin([ // 复制插件
+			{ from: path.join(__dirname, 'src/public'), to:  path.join(__dirname,'dist/public') }
+		])
 	],
 	optimization: {
 		minimizer: [
