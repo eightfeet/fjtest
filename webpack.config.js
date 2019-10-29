@@ -1,26 +1,19 @@
 
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-
-const DefinePlugin = webpack.DefinePlugin;
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 let cdn = process.env.PUBLIC_PATH || './';
 
-const evn = process.env.UAT_ENV;
-const isUat = evn === 'uat' ? true : false;
+const isUat = !!process.env.UAT_ENV === 'uat';
 
 module.exports = (env, argv) => ({
 	entry: './src/index.js',
 	context: path.resolve(__dirname),
 	output: {
-		library: '___Modal___',
-		libraryTarget: 'umd',
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'modal.js',
+		filename: 'build.js',
 		publicPath: argv.mode === 'development' ? '/' : cdn
 	},
 	module: {
@@ -37,16 +30,65 @@ module.exports = (env, argv) => ({
 					loader: 'babel-loader'
 				},
 				exclude: /node_modules/
+			}, {
+				test: /\.(scss|css)$/,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: 'style-loader'
+					},
+					{
+						loader: 'css-loader',
+						options: {
+							modules: {
+								localIdentName: '[name][hash:base64:5]'
+							}
+						}
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							sourceMap: true
+						}
+					}, {
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true
+						}
+					}
+				]
+			}, {
+				test: /\.(svg|woff2?|ttf|eot)(\?.*)?$/i,
+				use: 'file-loader'
+			}, {
+				test: /\.(jpe?g|png|gif)$/,
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 8192
+						}
+					}
+				]
+			}, {
+				test: /\.html$/,
+				use: [
+					{
+						loader: 'html-loader',
+						options: {
+							minimize: true,
+							removeComments: false,
+							collapseWhitespace: false
+						}
+					}
+				]
 			}
 		]
 	},
 	resolve: {
-		extensions: [".jsx", ".js", ".json", ".less", ".scss", ".css", ".html"],
+		extensions: ['.jsx', '.js', '.json', '.less', '.scss', '.css', '.html'],
 		alias: {
-			modules: path.resolve(__dirname, "src/modules"), // used for tests
-			style: path.resolve(__dirname, "src/style"),
-			core: path.resolve(__dirname, "src/core"),
-			"~": path.resolve(__dirname, "src") // root
+			'~': path.resolve(__dirname, 'src') // root
 		}
 	},
 	devtool: 'source-map',
@@ -63,15 +105,8 @@ module.exports = (env, argv) => ({
 		contentBase: path.join(__dirname, 'src'),
 		compress: true,
 		port: 9000,
-		// host: '0.0.0.0',
 		host: 'localhost',
 		publicPath: '/',
-		historyApiFallback: true,
-		proxy: {
-			"/mf": {
-				target: "http://wx-test1.by-health.com",
-				changeOrigin: true
-			}
-		  }
+		historyApiFallback: true
 	}
 });
