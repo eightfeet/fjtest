@@ -26,15 +26,21 @@ module.exports = (env, argv) => ({
 	module: {
 		rules: [
 			{
+				enforce: 'pre',
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'eslint-loader'
+			},
+			{
 				test: /\.js$/,
 				use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ["@babel/plugin-proposal-class-properties"]
-                    }
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+						plugins: ["@babel/plugin-proposal-class-properties"]
+					}
 				},
-                exclude: '/node_modules/',
+				exclude: /node_modules/
 			}
 		]
 	},
