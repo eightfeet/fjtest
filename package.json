@@ -1,13 +1,11 @@
 {
-  "name": "@eightfeet/modal",
+  "name": "@eightfeet/start",
   "version": "1.2.5",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "build:uat": "cross-env UAT_ENV=uat webpack --mode production",
-    "dev": "webpack-dev-server --mode development --inline --hot",
-    "prepublish": "rm -rf ./dist && yarn build",
+    "start": "webpack-dev-server --mode development --inline --hot",
     "test": "jest --watch"
   },
   "keywords": [],

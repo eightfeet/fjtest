@@ -7,8 +7,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 let cdn = process.env.PUBLIC_PATH || './';
 
-const isUat = !!process.env.UAT_ENV === 'uat';
-
 module.exports = (env, argv) => ({
 	entry: './src/index.js',
 	context: path.resolve(__dirname),

@@ -1925,7 +1925,8 @@ copy-descriptor@^0.1.0:
 
 copy-webpack-plugin@^5.0.4:
   version "5.0.4"
-  resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-5.0.4.tgz#c78126f604e24f194c6ec2f43a64e232b5d43655"
+  resolved "https://registry.npm.taobao.org/copy-webpack-plugin/download/copy-webpack-plugin-5.0.4.tgz#c78126f604e24f194c6ec2f43a64e232b5d43655"
+  integrity sha1-x4Em9gTiTxlMbsL0OmTiMrXUNlU=
   dependencies:
     cacache "^11.3.3"
     find-cache-dir "^2.1.0"
