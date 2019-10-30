@@ -1,6 +1,6 @@
 {
-  "name": "@eightfeet/start",
-  "version": "1.2.5",
+  "name": "asimplelauncherbywebpack",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
